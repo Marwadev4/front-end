@@ -1,5 +1,5 @@
 // const API_BASE_URL = 'http://localhost:5000/api';
-const API_BASE_URL = "https://backend-production-c7827.up.railway.app";
+const API_BASE_URL = "https://backend-production-bf33.up.railway.app";
 
 export const fetchFonts = async () => {
   const response = await fetch(`${API_BASE_URL}/fonts`);

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { uploadFont } from '../utils/api';
 
 export default function FontUpload({ onUploadSuccess }) {
@@ -8,6 +8,7 @@ export default function FontUpload({ onUploadSuccess }) {
   const [error, setError] = useState('');
   const [metadata, setMetadata] = useState({ name: '', family: '', style: 'Regular' });
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -67,7 +68,7 @@ export default function FontUpload({ onUploadSuccess }) {
               const droppedFile = e.dataTransfer.files[0];
               if (droppedFile) setFile(droppedFile);
             }}
-            onClick={() => document.getElementById('font-file').click()}
+            onClick={() => fileInputRef.current?.click()}
           >
             {/* Sparkle Icon */}
             <div className="absolute animate-pulse opacity-50 text-yellow-400" style={{ top: '1.5rem', right: '1.5rem', fontSize: '1.5rem' }}>✨</div>
@@ -93,7 +94,7 @@ export default function FontUpload({ onUploadSuccess }) {
 
             <input
               type="file"
-              id="font-file"
+              ref={fileInputRef}
               className="hidden"
               onChange={handleFileChange}
               accept=".ttf,.otf,.woff,.woff2"
