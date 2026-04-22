@@ -1,28 +1,29 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+// const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = "https://backend-production-c7827.up.railway.app";
 
 export const fetchFonts = async () => {
   const response = await fetch(`${API_BASE_URL}/fonts`);
-  if (!response.ok) throw new Error('Failed to fetch fonts');
+  if (!response.ok) throw new Error("Failed to fetch fonts");
   return response.json();
 };
 
 export const uploadFont = async (formData) => {
   const response = await fetch(`${API_BASE_URL}/fonts/upload`, {
-    method: 'POST',
+    method: "POST",
     body: formData,
   });
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.error || 'Upload failed');
+    throw new Error(error.error || "Upload failed");
   }
   return response.json();
 };
 
 export const deleteFont = async (id) => {
   const response = await fetch(`${API_BASE_URL}/fonts/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
   });
-  if (!response.ok) throw new Error('Delete failed');
+  if (!response.ok) throw new Error("Delete failed");
   return response.json();
 };
 
